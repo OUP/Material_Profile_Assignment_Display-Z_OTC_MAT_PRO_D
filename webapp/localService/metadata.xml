@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZOTC_C_MATPROFILE_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="I_CompanyCodeStdVHType" sap:label="Company Code" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CompanyCode"/>
+                </Key>
+                <Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="CompanyCodeName" sap:label="Company Code"/>
+                <Property Name="CompanyCodeName" Type="Edm.String" MaxLength="25" sap:label="Company Name" sap:quickinfo="Name of Company Code or Company"/>
+            </EntityType>
+            <EntityType Name="I_Customer_VHType" sap:label="Value Help for Customer" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Customer"/>
+                </Key>
+                <Property Name="Customer" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="CustomerName" sap:label="Customer" sap:quickinfo="Customer Number"/>
+                <Property Name="OrganizationBPName1" Type="Edm.String" MaxLength="35" sap:label="Name 1"/>
+                <Property Name="OrganizationBPName2" Type="Edm.String" MaxLength="35" sap:label="Name 2"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country" sap:quickinfo="Country Key"/>
+                <Property Name="CityName" Type="Edm.String" MaxLength="35" sap:label="City"/>
+                <Property Name="StreetName" Type="Edm.String" MaxLength="35" sap:label="Street" sap:quickinfo="Street and House Number"/>
+                <Property Name="CustomerName" Type="Edm.String" MaxLength="80" sap:label="Customer Name" sap:quickinfo="Name of Customer"/>
+                <Property Name="CustomerAccountGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Account group" sap:quickinfo="Customer Account Group"/>
+                <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Authorization" sap:quickinfo="Authorization Group"/>
+                <Property Name="IsBusinessPurposeCompleted" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Purpose Complete Flag" sap:quickinfo="Business Purpose Completed Flag"/>
+            </EntityType>
+            <EntityType Name="I_DraftAdministrativeDataType" sap:label="Draft Administration Data" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false" sap:label="Draft (Technical ID)"/>
+                <Property Name="DraftEntityType" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Draft Entity ID"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Created On"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="CreatedByUserDescription" sap:label="Draft Created By"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Last Changed On"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="LastChangedByUserDescription" sap:label="Draft Last Changed By"/>
+                <Property Name="DraftAccessType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Draft Access Type"/>
+                <Property Name="ProcessingStartDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft In Process Since"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:text="InProcessByUserDescription" sap:label="Draft In Process By"/>
+                <Property Name="DraftIsKeptByUser" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Draft Is Kept By User"/>
+                <Property Name="EnqueueStartDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Locked Since"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Draft Created By Me"/>
+                <Property Name="DraftIsLastChangedByMe" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Draft Last Changed By Me"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Draft In Process By Me"/>
+                <Property Name="CreatedByUserDescription" Type="Edm.String" MaxLength="80" sap:label="Draft Created By (Description)"/>
+                <Property Name="LastChangedByUserDescription" Type="Edm.String" MaxLength="80" sap:label="Draft Last Changed By (Description)"/>
+                <Property Name="InProcessByUserDescription" Type="Edm.String" MaxLength="80" sap:label="Draft In Process By (Description)"/>
+            </EntityType>
+            <EntityType Name="I_ProductcategoryvhType" sap:label="Product Category Type Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProductCategory"/>
+                </Key>
+                <Property Name="ProductCategory" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:text="ProductCategory_Text" sap:label="Product Category"/>
+                <Property Name="ProductCategory_Text" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="I_ProductVHType" sap:label="Product Value help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Product"/>
+                </Key>
+                <Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:text="Product_Text" sap:label="Product" sap:quickinfo="Product Number"/>
+                <Property Name="Product_Text" Type="Edm.String" MaxLength="40" sap:label="Product Description" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IndustrySector" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Industry Sector"/>
+                <Property Name="ProductType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Product Type"/>
+                <Property Name="ProductGroup" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Product Group"/>
+                <Property Name="BaseUnit" Type="Edm.String" MaxLength="3" sap:text="to_BaseUnit/UnitOfMeasure_Text" sap:label="Base Unit of Measure" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="GrossWeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="WeightUnit" sap:label="Gross weight"/>
+                <Property Name="NetWeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="WeightUnit" sap:label="Net weight"/>
+                <Property Name="WeightUnit" Type="Edm.String" MaxLength="3" sap:text="to_WeightUnit/UnitOfMeasure_Text" sap:label="Weight unit" sap:quickinfo="Weight Unit" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="ManufacturerNumber" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Manufacturer" sap:quickinfo="Manufacturer number"/>
+                <Property Name="IsBatchManagementRequired" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Batch management" sap:quickinfo="Batch management requirement indicator"/>
+                <Property Name="ProductManufacturerNumber" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Mfr Part Number" sap:quickinfo="Manufacturer Part Number"/>
+                <Property Name="ArticleCategory" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:text="to_ProductCategory/ProductCategory_Text" sap:label="Product Category" sap:value-list="standard"/>
+                <NavigationProperty Name="to_BaseUnit" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_4A7385D38672B9A17EDD3BC5EEEBDFED" FromRole="FromRole_assoc_4A7385D38672B9A17EDD3BC5EEEBDFED" ToRole="ToRole_assoc_4A7385D38672B9A17EDD3BC5EEEBDFED"/>
+                <NavigationProperty Name="to_ProductCategory" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_E58255E6E9CE868529149C17C208465F" FromRole="FromRole_assoc_E58255E6E9CE868529149C17C208465F" ToRole="ToRole_assoc_E58255E6E9CE868529149C17C208465F"/>
+                <NavigationProperty Name="to_WeightUnit" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_EE6A775290C5A92287938CE5B3D82BFB" FromRole="FromRole_assoc_EE6A775290C5A92287938CE5B3D82BFB" ToRole="ToRole_assoc_EE6A775290C5A92287938CE5B3D82BFB"/>
+            </EntityType>
+            <EntityType Name="I_SalesOrganizationType" sap:label="Sales Organization" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrganization"/>
+                </Key>
+                <Property Name="SalesOrganization" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="SalesOrganization_Text" sap:label="Sales Organization"/>
+                <Property Name="SalesOrganization_Text" Type="Edm.String" MaxLength="20" sap:label="Sales Organization Description" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrganizationCurrency" Type="Edm.String" MaxLength="5" sap:label="Statistics Currency" sap:quickinfo="Statistics currency" sap:semantics="currency-code"/>
+                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code" sap:quickinfo="Company code of the sales organization" sap:value-list="standard"/>
+                <Property Name="IntercompanyBillingCustomer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cust.Inter-Co.Bill." sap:quickinfo="Customer number for intercompany billing" sap:value-list="standard"/>
+            </EntityType>
+            <EntityType Name="I_UnitOfMeasureType" sap:label="Unit of Measure" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UnitOfMeasure"/>
+                </Key>
+                <Property Name="UnitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="3" sap:text="UnitOfMeasure_Text" sap:label="Unit of Measure" sap:semantics="unit-of-measure"/>
+                <Property Name="UnitOfMeasure_Text" Type="Edm.String" MaxLength="30" sap:label="UoM Text" sap:quickinfo="Unit of Measurement Text (Maximum 30 Characters)" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="UnitOfMeasureSAPCode" Type="Edm.String" MaxLength="3" sap:label="Internal SAP Code" sap:quickinfo="Unit of Measurement, Internal SAP Code (No Conversion)"/>
+                <Property Name="UnitOfMeasureISOCode" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:text="to_ISOCode/UnitOfMeasureISOCode_Text" sap:label="ISO code" sap:quickinfo="ISO code for unit of measurement" sap:value-list="standard"/>
+                <Property Name="IsPrimaryUnitForISOCode" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Primary code" sap:quickinfo="Selection field for conversion from ISO code to int. code"/>
+                <Property Name="UnitOfMeasureNumberOfDecimals" Type="Edm.Int16" sap:label="Decimal Rounding" sap:quickinfo="No. of decimal places for rounding"/>
+                <Property Name="UnitOfMeasureIsCommercial" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Commercial meas.unit" sap:quickinfo="Commercial measurement unit ID"/>
+                <Property Name="UnitOfMeasureDimension" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:text="to_Dimension/UnitOfMeasureDimension_Text" sap:label="Dimension" sap:quickinfo="Dimension key" sap:value-list="standard"/>
+                <Property Name="SIUnitCnvrsnRateNumerator" Type="Edm.Int32" sap:label="Numerator" sap:quickinfo="Numerator for conversion to SI unit"/>
+                <Property Name="SIUnitCnvrsnRateDenominator" Type="Edm.Int32" sap:label="Denominator" sap:quickinfo="Denominator for conversion into SI unit"/>
+                <Property Name="SIUnitCnvrsnRateExponent" Type="Edm.Int16" sap:label="Exponent" sap:quickinfo="base ten exponent for conversion to SI unit"/>
+                <Property Name="SIUnitCnvrsnAdditiveValue" Type="Edm.Decimal" Precision="9" Scale="6" sap:label="Additive constant" sap:quickinfo="Additive constant for conversion to SI unit"/>
+                <Property Name="UnitOfMeasureDspExponent" Type="Edm.Int16" sap:label="float. point exp." sap:quickinfo="Base ten exponent for floating-point display"/>
+                <Property Name="UnitOfMeasureDspNmbrOfDcmls" Type="Edm.Int16" sap:label="Decimal Places" sap:quickinfo="Number of decimal places for number display"/>
+                <Property Name="UnitOfMeasureTemperature" Type="Edm.Double" sap:unit="UnitOfMeasureTemperatureUnit" sap:label="Temperature"/>
+                <Property Name="UnitOfMeasureTemperatureUnit" Type="Edm.String" MaxLength="3" sap:label="Temperature unit" sap:semantics="unit-of-measure"/>
+                <Property Name="UnitOfMeasurePressure" Type="Edm.Double" sap:unit="UnitOfMeasurePressureUnit" sap:label="Pressure Value"/>
+                <Property Name="UnitOfMeasurePressureUnit" Type="Edm.String" MaxLength="3" sap:label="Unit of Pressure" sap:semantics="unit-of-measure"/>
+                <NavigationProperty Name="to_Dimension" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_744267C89213C6F0BEAA53E2EB9C8F4F" FromRole="FromRole_assoc_744267C89213C6F0BEAA53E2EB9C8F4F" ToRole="ToRole_assoc_744267C89213C6F0BEAA53E2EB9C8F4F"/>
+                <NavigationProperty Name="to_ISOCode" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_5E18390584266C106B459BC3FD3D3C50" FromRole="FromRole_assoc_5E18390584266C106B459BC3FD3D3C50" ToRole="ToRole_assoc_5E18390584266C106B459BC3FD3D3C50"/>
+            </EntityType>
+            <EntityType Name="I_UnitOfMeasureDimensionType" sap:label="Unit of Measure Dimension" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UnitOfMeasureDimension"/>
+                </Key>
+                <Property Name="UnitOfMeasureDimension" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase" sap:text="UnitOfMeasureDimension_Text" sap:label="Dimension" sap:quickinfo="Dimension key"/>
+                <Property Name="UnitOfMeasureDimension_Text" Type="Edm.String" MaxLength="20" sap:label="Dimension text" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="LengthExponent" Type="Edm.Int16" sap:label="Length" sap:quickinfo="Length exponent"/>
+                <Property Name="MassExponent" Type="Edm.Int16" sap:label="Mass" sap:quickinfo="Mass exponent"/>
+                <Property Name="TimeExponent" Type="Edm.Int16" sap:label="Time" sap:quickinfo="Current exponent"/>
+                <Property Name="ElectricCurrentExponent" Type="Edm.Int16" sap:label="elec. current" sap:quickinfo="Electric current exponent"/>
+                <Property Name="TemperatureExponent" Type="Edm.Int16" sap:label="Temperature" sap:quickinfo="Temperature exponent"/>
+                <Property Name="MoleQuantityExponent" Type="Edm.Int16" sap:label="Mole quantity" sap:quickinfo="Mole quantity exponent"/>
+                <Property Name="LuminosityExponent" Type="Edm.Int16" sap:label="Luminous intensity" sap:quickinfo="Luminosity exponent"/>
+                <Property Name="UnitOFMeasureSiUnit" Type="Edm.String" MaxLength="3" sap:label="SI unit" sap:semantics="unit-of-measure"/>
+                <Property Name="HasUnitsWithTemperatureSpec" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Temperature-Depend." sap:quickinfo="Indicator: Dimension has Unit with Temperature Specification"/>
+                <Property Name="HasUnitsWithPressureSpec" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Pressure-Dependent" sap:quickinfo="Indicator: Dimension has Units with Pressure Specification"/>
+            </EntityType>
+            <EntityType Name="I_UnitOfMeasureISOCodeType" sap:label="Unit of Measure ISO Code" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UnitOfMeasureISOCode"/>
+                </Key>
+                <Property Name="UnitOfMeasureISOCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:text="UnitOfMeasureISOCode_Text" sap:label="ISO code" sap:quickinfo="ISO code for unit of measurement"/>
+                <Property Name="UnitOfMeasureISOCode_Text" Type="Edm.String" MaxLength="25" sap:label="ISO code" sap:quickinfo="ISO codes for measurement unit names" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="ZOTC_C_MATPROFILEType" sap:label="Material Profile Assignment" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="mat_uuid"/>
+                </Key>
+                <Property Name="mat_uuid" Type="Edm.Guid" Nullable="false" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key"/>
+                <Property Name="profile" Type="Edm.String" MaxLength="10" sap:attribute-for="PROFILE" sap:display-format="UpperCase" sap:text="description" sap:label="Profile" sap:value-list="standard"/>
+                <Property Name="material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:text="to_Product/Product_Text" sap:label="Material" sap:quickinfo="Material Number" sap:value-list="standard"/>
+                <Property Name="sales_org" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="to_salesOrgText/SalesOrganization_Text" sap:label="Sales Organization" sap:value-list="standard"/>
+                <Property Name="valid_to" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid To" sap:quickinfo="Validity end date of the condition record"/>
+                <Property Name="valid_from" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid From" sap:quickinfo="Validity start date of the condition record"/>
+                <Property Name="zcomment" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="Description"/>
+                <Property Name="application" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Application Name" sap:value-list="standard"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="Profile Description" sap:quickinfo="Description"/>
+                <NavigationProperty Name="to_appl" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_CF1B8E69AF2CD463BF40146AB20D44EA" FromRole="FromRole_assoc_CF1B8E69AF2CD463BF40146AB20D44EA" ToRole="ToRole_assoc_CF1B8E69AF2CD463BF40146AB20D44EA"/>
+                <NavigationProperty Name="to_Product" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_53BC981BA991092CD52D3F7309148536" FromRole="FromRole_assoc_53BC981BA991092CD52D3F7309148536" ToRole="ToRole_assoc_53BC981BA991092CD52D3F7309148536"/>
+                <NavigationProperty Name="to_Profile" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_3195456812CA5B71DD03151FF45968F1" FromRole="FromRole_assoc_3195456812CA5B71DD03151FF45968F1" ToRole="ToRole_assoc_3195456812CA5B71DD03151FF45968F1"/>
+                <NavigationProperty Name="to_salesOrgText" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_1229E91F465BC12D12A53D426A801941" FromRole="FromRole_assoc_1229E91F465BC12D12A53D426A801941" ToRole="ToRole_assoc_1229E91F465BC12D12A53D426A801941"/>
+            </EntityType>
+            <EntityType Name="ZOTC_I_PROFILEType" sap:label="Profile" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="profile_uuid"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="Activation_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Deleteprofile_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Edit_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Preparation_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Validation_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="profile_uuid" Type="Edm.Guid" Nullable="false" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key"/>
+                <Property Name="profile" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Profile"/>
+                <Property Name="application" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Application Name"/>
+                <Property Name="description" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="Profile Description" sap:quickinfo="Description"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Has Draft" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ActiveUUID" Type="Edm.Guid" sap:label="Key" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DraftEntityCreationDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Created On" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="DraftEntityLastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7" sap:label="Draft Last Changed On" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Has active" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" sap:display-format="UpperCase" sap:label="Is active" sap:heading="" sap:quickinfo="" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_70C902D2FF9064AE959EC13A957CCB09" FromRole="FromRole_assoc_70C902D2FF9064AE959EC13A957CCB09" ToRole="ToRole_assoc_70C902D2FF9064AE959EC13A957CCB09"/>
+                <NavigationProperty Name="SiblingEntity" Relationship="ZOTC_C_MATPROFILE_CDS.assoc_41D6501A10DF3B8106EF24AEB62540D9" FromRole="FromRole_assoc_41D6501A10DF3B8106EF24AEB62540D9" ToRole="ToRole_assoc_41D6501A10DF3B8106EF24AEB62540D9"/>
+            </EntityType>
+            <EntityType Name="ZOTC_I_PROFILE_APPL_VHType" sap:label="Application Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Application"/>
+                </Key>
+                <Property Name="Application" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Application" sap:quickinfo="Values for Domains: Single Value / Upper Limit"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="60" sap:label="Application Description" sap:quickinfo="Short Text for Fixed Values"/>
+            </EntityType>
+            <ComplexType Name="DummyFunctionImportResult">
+                <Property Name="IsInvalid" Type="Edm.Boolean" sap:label="TRUE"/>
+            </ComplexType>
+            <ComplexType Name="ValidationFunctionResult">
+                <Property Name="IsValid" Type="Edm.Boolean" sap:label="Is valid"/>
+            </ComplexType>
+            <Association Name="assoc_744267C89213C6F0BEAA53E2EB9C8F4F" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureType" Multiplicity="1" Role="FromRole_assoc_744267C89213C6F0BEAA53E2EB9C8F4F"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureDimensionType" Multiplicity="0..1" Role="ToRole_assoc_744267C89213C6F0BEAA53E2EB9C8F4F"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_744267C89213C6F0BEAA53E2EB9C8F4F">
+                        <PropertyRef Name="UnitOfMeasureDimension"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_744267C89213C6F0BEAA53E2EB9C8F4F">
+                        <PropertyRef Name="UnitOfMeasureDimension"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_5E18390584266C106B459BC3FD3D3C50" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureType" Multiplicity="1" Role="FromRole_assoc_5E18390584266C106B459BC3FD3D3C50"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureISOCodeType" Multiplicity="0..1" Role="ToRole_assoc_5E18390584266C106B459BC3FD3D3C50"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_5E18390584266C106B459BC3FD3D3C50">
+                        <PropertyRef Name="UnitOfMeasureISOCode"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_5E18390584266C106B459BC3FD3D3C50">
+                        <PropertyRef Name="UnitOfMeasureISOCode"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_70C902D2FF9064AE959EC13A957CCB09" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" Multiplicity="1" Role="FromRole_assoc_70C902D2FF9064AE959EC13A957CCB09"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_DraftAdministrativeDataType" Multiplicity="0..1" Role="ToRole_assoc_70C902D2FF9064AE959EC13A957CCB09"/>
+            </Association>
+            <Association Name="assoc_41D6501A10DF3B8106EF24AEB62540D9" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" Multiplicity="1" Role="FromRole_assoc_41D6501A10DF3B8106EF24AEB62540D9"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" Multiplicity="0..1" Role="ToRole_assoc_41D6501A10DF3B8106EF24AEB62540D9"/>
+            </Association>
+            <Association Name="assoc_CF1B8E69AF2CD463BF40146AB20D44EA" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType" Multiplicity="1" Role="FromRole_assoc_CF1B8E69AF2CD463BF40146AB20D44EA"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILE_APPL_VHType" Multiplicity="0..1" Role="ToRole_assoc_CF1B8E69AF2CD463BF40146AB20D44EA"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_CF1B8E69AF2CD463BF40146AB20D44EA">
+                        <PropertyRef Name="Application"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_CF1B8E69AF2CD463BF40146AB20D44EA">
+                        <PropertyRef Name="application"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_53BC981BA991092CD52D3F7309148536" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType" Multiplicity="1" Role="FromRole_assoc_53BC981BA991092CD52D3F7309148536"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_ProductVHType" Multiplicity="0..1" Role="ToRole_assoc_53BC981BA991092CD52D3F7309148536"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_53BC981BA991092CD52D3F7309148536">
+                        <PropertyRef Name="Product"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_53BC981BA991092CD52D3F7309148536">
+                        <PropertyRef Name="material"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_3195456812CA5B71DD03151FF45968F1" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType" Multiplicity="1" Role="FromRole_assoc_3195456812CA5B71DD03151FF45968F1"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" Multiplicity="0..1" Role="ToRole_assoc_3195456812CA5B71DD03151FF45968F1"/>
+            </Association>
+            <Association Name="assoc_1229E91F465BC12D12A53D426A801941" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType" Multiplicity="1" Role="FromRole_assoc_1229E91F465BC12D12A53D426A801941"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_SalesOrganizationType" Multiplicity="0..1" Role="ToRole_assoc_1229E91F465BC12D12A53D426A801941"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_1229E91F465BC12D12A53D426A801941">
+                        <PropertyRef Name="SalesOrganization"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_1229E91F465BC12D12A53D426A801941">
+                        <PropertyRef Name="sales_org"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_E58255E6E9CE868529149C17C208465F" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_ProductVHType" Multiplicity="1" Role="FromRole_assoc_E58255E6E9CE868529149C17C208465F"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_ProductcategoryvhType" Multiplicity="0..1" Role="ToRole_assoc_E58255E6E9CE868529149C17C208465F"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_E58255E6E9CE868529149C17C208465F">
+                        <PropertyRef Name="ProductCategory"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_E58255E6E9CE868529149C17C208465F">
+                        <PropertyRef Name="ArticleCategory"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_EE6A775290C5A92287938CE5B3D82BFB" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_ProductVHType" Multiplicity="1" Role="FromRole_assoc_EE6A775290C5A92287938CE5B3D82BFB"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureType" Multiplicity="0..1" Role="ToRole_assoc_EE6A775290C5A92287938CE5B3D82BFB"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_EE6A775290C5A92287938CE5B3D82BFB">
+                        <PropertyRef Name="UnitOfMeasure"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_EE6A775290C5A92287938CE5B3D82BFB">
+                        <PropertyRef Name="WeightUnit"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_4A7385D38672B9A17EDD3BC5EEEBDFED" sap:content-version="1">
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_ProductVHType" Multiplicity="1" Role="FromRole_assoc_4A7385D38672B9A17EDD3BC5EEEBDFED"/>
+                <End Type="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureType" Multiplicity="0..1" Role="ToRole_assoc_4A7385D38672B9A17EDD3BC5EEEBDFED"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_4A7385D38672B9A17EDD3BC5EEEBDFED">
+                        <PropertyRef Name="UnitOfMeasure"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_4A7385D38672B9A17EDD3BC5EEEBDFED">
+                        <PropertyRef Name="BaseUnit"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZOTC_C_MATPROFILE_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="I_CompanyCodeStdVH" EntityType="ZOTC_C_MATPROFILE_CDS.I_CompanyCodeStdVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_Customer_VH" EntityType="ZOTC_C_MATPROFILE_CDS.I_Customer_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_DraftAdministrativeData" EntityType="ZOTC_C_MATPROFILE_CDS.I_DraftAdministrativeDataType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="I_Productcategoryvh" EntityType="ZOTC_C_MATPROFILE_CDS.I_ProductcategoryvhType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_ProductVH" EntityType="ZOTC_C_MATPROFILE_CDS.I_ProductVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_SalesOrganization" EntityType="ZOTC_C_MATPROFILE_CDS.I_SalesOrganizationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_UnitOfMeasure" EntityType="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_UnitOfMeasureDimension" EntityType="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureDimensionType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_UnitOfMeasureISOCode" EntityType="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureISOCodeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZOTC_C_MATPROFILE" EntityType="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType" sap:content-version="1"/>
+                <EntitySet Name="ZOTC_I_PROFILE" EntityType="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZOTC_I_PROFILE_APPL_VH" EntityType="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILE_APPL_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_E58255E6E9CE868529149C17C208465F" Association="ZOTC_C_MATPROFILE_CDS.assoc_E58255E6E9CE868529149C17C208465F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="I_ProductVH" Role="FromRole_assoc_E58255E6E9CE868529149C17C208465F"/>
+                    <End EntitySet="I_Productcategoryvh" Role="ToRole_assoc_E58255E6E9CE868529149C17C208465F"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_5E18390584266C106B459BC3FD3D3C50" Association="ZOTC_C_MATPROFILE_CDS.assoc_5E18390584266C106B459BC3FD3D3C50" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="I_UnitOfMeasure" Role="FromRole_assoc_5E18390584266C106B459BC3FD3D3C50"/>
+                    <End EntitySet="I_UnitOfMeasureISOCode" Role="ToRole_assoc_5E18390584266C106B459BC3FD3D3C50"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_CF1B8E69AF2CD463BF40146AB20D44EA" Association="ZOTC_C_MATPROFILE_CDS.assoc_CF1B8E69AF2CD463BF40146AB20D44EA" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_MATPROFILE" Role="FromRole_assoc_CF1B8E69AF2CD463BF40146AB20D44EA"/>
+                    <End EntitySet="ZOTC_I_PROFILE_APPL_VH" Role="ToRole_assoc_CF1B8E69AF2CD463BF40146AB20D44EA"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_41D6501A10DF3B8106EF24AEB62540D9" Association="ZOTC_C_MATPROFILE_CDS.assoc_41D6501A10DF3B8106EF24AEB62540D9" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_I_PROFILE" Role="FromRole_assoc_41D6501A10DF3B8106EF24AEB62540D9"/>
+                    <End EntitySet="ZOTC_I_PROFILE" Role="ToRole_assoc_41D6501A10DF3B8106EF24AEB62540D9"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_53BC981BA991092CD52D3F7309148536" Association="ZOTC_C_MATPROFILE_CDS.assoc_53BC981BA991092CD52D3F7309148536" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_MATPROFILE" Role="FromRole_assoc_53BC981BA991092CD52D3F7309148536"/>
+                    <End EntitySet="I_ProductVH" Role="ToRole_assoc_53BC981BA991092CD52D3F7309148536"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_70C902D2FF9064AE959EC13A957CCB09" Association="ZOTC_C_MATPROFILE_CDS.assoc_70C902D2FF9064AE959EC13A957CCB09" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_I_PROFILE" Role="FromRole_assoc_70C902D2FF9064AE959EC13A957CCB09"/>
+                    <End EntitySet="I_DraftAdministrativeData" Role="ToRole_assoc_70C902D2FF9064AE959EC13A957CCB09"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_3195456812CA5B71DD03151FF45968F1" Association="ZOTC_C_MATPROFILE_CDS.assoc_3195456812CA5B71DD03151FF45968F1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_MATPROFILE" Role="FromRole_assoc_3195456812CA5B71DD03151FF45968F1"/>
+                    <End EntitySet="ZOTC_I_PROFILE" Role="ToRole_assoc_3195456812CA5B71DD03151FF45968F1"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_4A7385D38672B9A17EDD3BC5EEEBDFED" Association="ZOTC_C_MATPROFILE_CDS.assoc_4A7385D38672B9A17EDD3BC5EEEBDFED" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="I_ProductVH" Role="FromRole_assoc_4A7385D38672B9A17EDD3BC5EEEBDFED"/>
+                    <End EntitySet="I_UnitOfMeasure" Role="ToRole_assoc_4A7385D38672B9A17EDD3BC5EEEBDFED"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_1229E91F465BC12D12A53D426A801941" Association="ZOTC_C_MATPROFILE_CDS.assoc_1229E91F465BC12D12A53D426A801941" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZOTC_C_MATPROFILE" Role="FromRole_assoc_1229E91F465BC12D12A53D426A801941"/>
+                    <End EntitySet="I_SalesOrganization" Role="ToRole_assoc_1229E91F465BC12D12A53D426A801941"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_744267C89213C6F0BEAA53E2EB9C8F4F" Association="ZOTC_C_MATPROFILE_CDS.assoc_744267C89213C6F0BEAA53E2EB9C8F4F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="I_UnitOfMeasure" Role="FromRole_assoc_744267C89213C6F0BEAA53E2EB9C8F4F"/>
+                    <End EntitySet="I_UnitOfMeasureDimension" Role="ToRole_assoc_744267C89213C6F0BEAA53E2EB9C8F4F"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_EE6A775290C5A92287938CE5B3D82BFB" Association="ZOTC_C_MATPROFILE_CDS.assoc_EE6A775290C5A92287938CE5B3D82BFB" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="I_ProductVH" Role="FromRole_assoc_EE6A775290C5A92287938CE5B3D82BFB"/>
+                    <End EntitySet="I_UnitOfMeasure" Role="ToRole_assoc_EE6A775290C5A92287938CE5B3D82BFB"/>
+                </AssociationSet>
+                <FunctionImport Name="ZOTC_I_PROFILEActivation" ReturnType="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" EntitySet="ZOTC_I_PROFILE" m:HttpMethod="POST" sap:action-for="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" sap:applicable-path="Activation_ac">
+                    <Parameter Name="profile_uuid" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="ZOTC_I_PROFILEDeleteprofile" ReturnType="ZOTC_C_MATPROFILE_CDS.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" sap:applicable-path="Deleteprofile_ac">
+                    <Parameter Name="profile_uuid" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="ZOTC_I_PROFILEEdit" ReturnType="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" EntitySet="ZOTC_I_PROFILE" m:HttpMethod="POST" sap:action-for="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" sap:applicable-path="Edit_ac">
+                    <Parameter Name="profile_uuid" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                    <Parameter Name="PreserveChanges" Type="Edm.Boolean" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="ZOTC_I_PROFILEPreparation" ReturnType="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" EntitySet="ZOTC_I_PROFILE" m:HttpMethod="POST" sap:action-for="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" sap:applicable-path="Preparation_ac">
+                    <Parameter Name="profile_uuid" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+                <FunctionImport Name="ZOTC_I_PROFILEValidation" ReturnType="ZOTC_C_MATPROFILE_CDS.ValidationFunctionResult" m:HttpMethod="GET" sap:action-for="ZOTC_C_MATPROFILE_CDS.ZOTC_I_PROFILEType" sap:applicable-path="Validation_ac">
+                    <Parameter Name="profile_uuid" Type="Edm.Guid" Mode="In"/>
+                    <Parameter Name="IsActiveEntity" Type="Edm.Boolean" Mode="In"/>
+                    <Parameter Name="SideEffectsQualifier" Type="Edm.String" Mode="In" Nullable="true"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILE_CDS_Entities/ZOTC_I_PROFILE" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.DraftRoot">
+                    <Record>
+                        <PropertyValue Property="ActivationAction" String="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILE_CDS_Entities/ZOTC_I_PROFILEActivation"/>
+                        <PropertyValue Property="EditAction" String="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILE_CDS_Entities/ZOTC_I_PROFILEEdit"/>
+                        <PropertyValue Property="PreparationAction" String="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILE_CDS_Entities/ZOTC_I_PROFILEPreparation"/>
+                        <PropertyValue Property="ValidationFunction" String="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILE_CDS_Entities/ZOTC_I_PROFILEValidation"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>Activation_ac</PropertyPath>
+                                <PropertyPath>Deleteprofile_ac</PropertyPath>
+                                <PropertyPath>Edit_ac</PropertyPath>
+                                <PropertyPath>Preparation_ac</PropertyPath>
+                                <PropertyPath>Validation_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Activation_ac</PropertyPath>
+                                <PropertyPath>Deleteprofile_ac</PropertyPath>
+                                <PropertyPath>Edit_ac</PropertyPath>
+                                <PropertyPath>Preparation_ac</PropertyPath>
+                                <PropertyPath>Validation_ac</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.I_ProductVHType/BaseUnit" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Unit of Measure"/>
+                        <PropertyValue Property="CollectionPath" String="I_UnitOfMeasure"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="BaseUnit"/>
+                                    <PropertyValue Property="ValueListProperty" String="UnitOfMeasure"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="UnitOfMeasure_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.I_ProductVHType/WeightUnit" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Unit of Measure"/>
+                        <PropertyValue Property="CollectionPath" String="I_UnitOfMeasure"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="WeightUnit"/>
+                                    <PropertyValue Property="ValueListProperty" String="UnitOfMeasure"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="UnitOfMeasure_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.I_ProductVHType/ArticleCategory" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Product Category Type Value Help"/>
+                        <PropertyValue Property="CollectionPath" String="I_Productcategoryvh"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ArticleCategory"/>
+                                    <PropertyValue Property="ValueListProperty" String="ProductCategory"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ProductCategory_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.I_SalesOrganizationType/CompanyCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Company Code"/>
+                        <PropertyValue Property="CollectionPath" String="I_CompanyCodeStdVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="CompanyCode"/>
+                                    <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CompanyCodeName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.I_SalesOrganizationType/IntercompanyBillingCustomer" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value Help for Customer"/>
+                        <PropertyValue Property="CollectionPath" String="I_Customer_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="IntercompanyBillingCustomer"/>
+                                    <PropertyValue Property="ValueListProperty" String="Customer"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="OrganizationBPName1"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="OrganizationBPName2"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Country"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CityName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="StreetName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CustomerName"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CustomerAccountGroup"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AuthorizationGroup"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="IsBusinessPurposeCompleted"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureType/UnitOfMeasureISOCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Unit of Measure ISO Code"/>
+                        <PropertyValue Property="CollectionPath" String="I_UnitOfMeasureISOCode"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UnitOfMeasureISOCode"/>
+                                    <PropertyValue Property="ValueListProperty" String="UnitOfMeasureISOCode"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="UnitOfMeasureISOCode_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureType/UnitOfMeasureDimension" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Unit of Measure Dimension"/>
+                        <PropertyValue Property="CollectionPath" String="I_UnitOfMeasureDimension"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="UnitOfMeasureDimension"/>
+                                    <PropertyValue Property="ValueListProperty" String="UnitOfMeasureDimension"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="UnitOfMeasureDimension_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType/profile" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Profile"/>
+                        <PropertyValue Property="CollectionPath" String="ZOTC_I_PROFILE"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="profile"/>
+                                    <PropertyValue Property="ValueListProperty" String="profile"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="description"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType/material" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Product Value help"/>
+                        <PropertyValue Property="CollectionPath" String="I_ProductVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="material"/>
+                                    <PropertyValue Property="ValueListProperty" String="Product"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Product_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType/sales_org" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Sales Organization"/>
+                        <PropertyValue Property="CollectionPath" String="I_SalesOrganization"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="sales_org"/>
+                                    <PropertyValue Property="ValueListProperty" String="SalesOrganization"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SalesOrganization_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType/application" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Application Value Help"/>
+                        <PropertyValue Property="CollectionPath" String="ZOTC_I_PROFILE_APPL_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="application"/>
+                                    <PropertyValue Property="ValueListProperty" String="Application"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Description"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILE_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.ZOTC_C_MATPROFILEType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>valid_to</PropertyPath>
+                        <PropertyPath>sales_org</PropertyPath>
+                        <PropertyPath>material</PropertyPath>
+                        <PropertyPath>profile</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_C_MATPROFILE_CDS.I_UnitOfMeasureType/UnitOfMeasure" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.UnitSpecificScale" Path="UnitOfMeasureDspNmbrOfDcmls"/>
+            </Annotations>
+            <atom:link rel="self" href="https://s4dbasdev130:443/sap/opu/odata/sap/ZOTC_C_MATPROFILE_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s4dbasdev130:443/sap/opu/odata/sap/ZOTC_C_MATPROFILE_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
